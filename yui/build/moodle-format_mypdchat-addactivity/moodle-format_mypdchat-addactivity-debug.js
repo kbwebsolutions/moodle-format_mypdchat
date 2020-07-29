@@ -1,0 +1,293 @@
+YUI.add('moodle-format_mypdchat-addactivity', function (Y, NAME) {
+
+M.format_mypdchat = M.format_mypdchat || {};
+M.format_mypdchat.addactivityinit = function (data) {
+    "use strict";
+
+    var dialog;
+    var parentnode;
+    var contentnode;
+    var attachrecentactivitiyids;
+
+    var maxwidth = 500;
+    var maxheight = 500;
+
+    function initDialog() {
+
+        Y.one(document.body).appendChild(parentnode);
+
+        dialog = new M.core.dialogue({
+            bodyContent: contentnode,
+            width: maxwidth,
+            height: maxheight,
+            modal: true,
+            zIndex: 15,
+            visible: true,
+            render: true,
+            center: true
+        });
+
+        var ok = {
+            value: M.str.format_mypdchat.attach,
+            action: function (e) {
+                e.preventDefault();
+                onAttachActivities();
+                dialog.hide();
+            },
+            section: Y.WidgetStdMod.FOOTER
+        };
+
+        var cancel = {
+            value: M.str.format_mypdchat.cancel,
+            action: function (e) {
+                dialog.hide();
+            },
+            section: Y.WidgetStdMod.FOOTER
+        };
+
+        dialog.addButton(ok);
+        dialog.addButton(cancel);
+        dialog.hide();
+
+    }
+
+    function storeRecentActivityidsToSession(attachrecentactivitiyids) {
+
+        // Collect selected modids.
+        var url = M.cfg.wwwroot + '/course/format/mypdchat/pages/addactivity_ajax.php';
+
+        // ... get params.
+        var params = {};
+        params.courseid = data.courseid;
+        params.action = 'addactivities';
+        params.attachrecentactivitiyids = Y.JSON.stringify(attachrecentactivitiyids);
+        params.sesskey = M.cfg.sesskey;
+
+        Y.io(url, {
+            data: params
+        });
+    }
+
+    function onAttachActivities() {
+
+        attachrecentactivitiyids = [];
+
+        var selectedactivities = Y.one('#attachedrecentactivities');
+        selectedactivities.setHTML('');
+
+        var recentactivities = Y.all('#id_recentactivitiesheader input[name^="module_"]');
+        if (recentactivities) {
+
+            recentactivities.each(function (node) {
+
+                if (node.get('checked')) {
+
+                    var id = node.get('id').split('_') [1];
+                    var selectedElement = Y.one('#id_recentactivitiesheader .felement label[for="module_' + id + '"]');
+                    var withboost = false;
+
+                    if (selectedElement === null) {
+                        // Compatibility with boost theme based.
+                        selectedElement = Y.one('#id_recentactivitiesheader .fitem span[data-itemid="' + id + '"]');
+                        withboost = true;
+
+                        if (selectedElement === null) {
+                            if (M.cfg.developerdebug) {
+                                Y.log("Error: Incompatible theme.");
+                            }
+                            return false;
+                        }
+                    }
+
+                    var li = Y.Node.create('<li></li>');
+                    var clone = selectedElement.cloneNode(true);
+                    var label;
+
+                    if (withboost) {
+                        label = Y.Node.create('<label for="module_' + id + '"></li>');
+                        li.append(label);
+                        label.append(clone);
+                    } else {
+                        li.append(clone);
+                    }
+
+                    selectedactivities.append(li);
+
+                    attachrecentactivitiyids.push(id);
+                }
+            });
+        }
+
+        storeRecentActivityidsToSession(attachrecentactivitiyids);
+
+        return true;
+    }
+
+    function setCheckBoxes() {
+
+        var recentactivities = Y.all('#id_recentactivitiesheader input[name^="module_"]');
+        if (recentactivities) {
+
+            recentactivities.each(function (node) {
+                node.set('checked', false);
+            });
+        }
+
+        if (attachrecentactivitiyids) {
+
+            for (var i in attachrecentactivitiyids) {
+                var id = attachrecentactivitiyids[i];
+                var cb = Y.one('#module_' + id);
+
+                if (cb) {
+                    cb.set('checked', 'checked');
+                }
+            }
+        }
+    }
+
+    function onClickFilterByType() {
+
+        var recentactivities = Y.all('#id_recentactivitiesheader div.fitem');
+
+        if (recentactivities) {
+            recentactivities.hide();
+        }
+
+        var checkedfilterelements = Y.all('#id_filtersheader input[id^="type_"]');
+
+        if (checkedfilterelements) {
+
+            checkedfilterelements.each(function (node) {
+
+                if (node.get('checked')) {
+
+                    var type = node.get('id').split('_') [1];
+
+                    var shownactivities = Y.all('#id_recentactivitiesheader input[name^="module_' + type + '"]');
+
+                    if (shownactivities) {
+                        shownactivities.each(function (node) {
+                            node.ancestor('.fitem').show();
+                        });
+                    }
+                }
+            });
+        }
+
+        return true;
+    }
+
+    function onResizeDialog() {
+
+        var bb = dialog.get('boundingBox');
+        var windowheight = bb.get('winHeight');
+        var windowwidth = bb.get('winWidth');
+
+        var height = Math.min(windowheight, maxheight);
+        var width = Math.min(windowwidth, maxwidth);
+
+        dialog.set('height', height);
+        dialog.set('width', width - 120);
+
+        dialog.centerDialogue();
+    }
+
+    function onChangeSearchName(searchfield) {
+
+        var searchtext = searchfield.get('value');
+        var recentactivities = Y.all('#id_recentactivitiesheader div.fitem');
+
+        if (searchtext.length < 3) {
+
+            if (recentactivities) {
+
+                recentactivities.each(
+                        function (node) {
+                            node.show();
+                        }
+                );
+            }
+            return false;
+        }
+
+        if (!recentactivities) {
+            return false;
+        }
+
+        recentactivities.each(
+                function (node) {
+
+                    var label = node.one('span.instancename');
+
+                    if (label) {
+
+                        var name = label.getContent();
+
+                        var index = name.indexOf(searchtext);
+
+                        if (name.toUpperCase().indexOf(searchtext.toUpperCase()) == -1) {
+                            node.hide();
+                        } else {
+                            node.show();
+                        }
+                    } else {
+                        node.hide();
+                    }
+
+                }
+        );
+    }
+
+    function initialize() {
+
+        attachrecentactivitiyids = data.attachedrecentactivities;
+
+        parentnode = Y.Node.create('<div id="filesskin" class="format_mypdchat-addactivity-dialog"></div>');
+        contentnode = Y.one('#tl-addrecentactivity-formwrapper');
+        parentnode.append(contentnode);
+
+        initDialog();
+
+        var typefilter = Y.one('#id_filtersheader');
+
+        if (typefilter) {
+            typefilter.delegate('click', function (e) {
+                onClickFilterByType();
+            }, 'input[id^="type_"]');
+        }
+
+        var searchbyname = Y.one('#id_searchbyname');
+        if (searchbyname) {
+            searchbyname.on('keyup', function (e) {
+                onChangeSearchName(this);
+            });
+        }
+
+        var control = Y.one('#tl-addrecentactivity-text');
+        var link = Y.one('#tl-addrecentactivity-link');
+
+        link.append(control);
+        link.show();
+
+        link.on('click', function (e) {
+            e.preventDefault();
+            setCheckBoxes();
+            dialog.show();
+        });
+
+        Y.one('window').on('resize', function (e) {
+            onResizeDialog();
+        });
+
+        Y.one('#tl-addrecentactivity-form').on('submit', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    }
+
+    initialize();
+};
+
+
+}, '@VERSION@', {"requires": ["base", "node", "io", "moodle-core-notification-dialogue"]});

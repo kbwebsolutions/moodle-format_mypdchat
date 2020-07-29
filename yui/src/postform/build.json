@@ -1,0 +1,10 @@
+{
+    "name": "moodle-format_mypdchat-postform",
+    "builds": {
+        "moodle-format_mypdchat-postform": {
+            "jsfiles": [
+                "postform.js"
+            ]
+        }
+    }
+}

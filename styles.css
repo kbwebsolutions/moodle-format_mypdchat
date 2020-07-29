@@ -1,0 +1,307 @@
+.course-content ul.mypdchat {margin:0;}
+.course-content ul.mypdchat li.section {list-style: none;margin:0 0 5px 0;padding:0;}
+.course-content ul.mypdchat li.section .content {margin:0 40px;}
+.course-content ul.mypdchat li.section .left {float:left;}
+.course-content ul.mypdchat li.section .right {float:right;}
+.course-content ul.mypdchat li.section .left,
+.course-content ul.mypdchat li.section .right {width:40px;text-align:center;padding: 6px 0;}
+.course-content ul.mypdchat li.section .right img.icon { padding: 0 0 4px 0;}
+.course-content ul.mypdchat li.section .left .section-handle img.icon { padding:0; vertical-align: baseline; }
+
+.format-mypdchat #postform {
+    width: 90%;
+}
+
+.format-mypdchat #postform .fitem div.fitemtitle {
+    float: none;
+    padding-top: 5px;
+    text-align: left;
+    width: auto;
+}
+
+.format-mypdchat #postform .fitem .felement {
+    margin-left: 0;
+}
+
+.format-mypdchat #postform .fitem_fgroup .fitemtitle {
+    height: 0;
+}
+
+.format-mypdchat #postform .fitem_fgroup .felement span,
+.format-mypdchat #postform .fitem_fgroup .felement a {
+    margin-right: 5px;
+}
+
+.format-mypdchat #postform textarea.sw-texarea, #posttext {
+    width:100%;
+}
+
+.format-mypdchat #postform #fitem_posttext,
+.format-mypdchat #postform div.sw-texarea {
+    margin-bottom: 0px;
+    margin-right: 100px;
+}
+
+.format-mypdchat #postform .fgroup_id_group_1 {
+    margin-top:30px;
+    float:right;
+    width:100px;
+    text-align: right;
+}
+
+.format-mypdchat #postform .fgroup_id_group_2 {
+    float:left;
+}
+
+.format-mypdchat #postform #id_submitbutton, .format-mypdchat #postform #id_cancel {
+    margin: 0 0 10px 0;
+    float : right;
+}
+
+.format-mypdchat #postform #sw-addactivitylink {
+    float:right;
+    margin-right:90px;
+    border: none;
+    background: none;
+    box-shadow: none;
+    color:#ff6500;
+    text-decoration: underline;
+}
+
+.format-mypdchat .tl-posts, .tl-comments, .tl-replies {
+    list-style:none;
+    margin: 10px 0px;
+}
+
+.format-mypdchat .tl-commentform .mform .fitem div.fitemtitle {
+    width: 10px;
+}
+
+.format-mypdchat .tl-comment-replywrapper {
+    margin-left: 45px;
+}
+
+.format-mypdchat .tl-comment-replywrapper .tl-actionlink {
+    text-align: right;
+    border-top : 1px solid #cccccc;
+}
+
+.format-mypdchat .tl-posts .section li.activity {
+    clear: none;
+    padding: 0;
+}
+
+.format-mypdchat .tl-post, .tl-comment {
+    margin-bottom : 10px;
+    line-height: 18px;
+}
+
+.format-mypdchat .tl-post {
+    margin: 30px 0;
+}
+
+.format-mypdchat .tl-leftcol, .tl-author   {
+    float:left;
+    width:40px;
+}
+
+.format-mypdchat .tl-author {
+    margin-bottom: 10px;
+}
+
+.format-mypdchat .tl-text {
+    margin-left: 40px;
+    padding: 0 5px;
+    border-left: 2px solid #efefef;
+}
+
+.format-mypdchat .tl-comments .tl-text {
+    border: none;
+}
+
+.format-mypdchat .tl-authorname {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.format-mypdchat .tl-locked, .tl-postcomment, .tl-sticky, .tl-edited-wrapper {
+    float:right;
+    margin-left: 5px;
+}
+
+.format-mypdchat .tl-edited-wrapper {
+    background: #ff974a;
+    color:white;
+    font-size: 10px;
+    line-height: 10px;
+    padding:5px;
+    border-radius: 3px;
+}
+
+.format-mypdchat .tl-timeago, .tl-counts {
+    font-size: 8px;
+    color: #666666;
+    line-height: 10px;
+}
+
+.format-mypdchat .tl-counts span {
+    margin-right: 6px;
+}
+
+.format-mypdchat .tl-commenttext-wrapper {
+    margin-right: 80px;
+}
+
+.format-mypdchat .tl-commenttext {
+    width:100%;
+    margin: 0;
+}
+
+.format-mypdchat .tl-showall {
+    text-align: center;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+}
+
+.format-mypdchat .tl-action-icons {
+    margin-left: 8px;
+}
+
+.format-mypdchat .postform .section-modchooser {
+    text-align:left;
+}
+
+.format-mypdchat .postform .section {
+    border-bottom: 0;
+}
+.format-mypdchat .tl-posts .editing_move {
+    display: none;
+}
+
+.format-mypdchat .attachactivies {
+    padding: 5px;
+    border: 2px dashed #cccccc;
+    margin-bottom: 10px;
+}
+
+.format-mypdchat .tl-actionlink a {
+    margin-right: 5px;
+}
+
+.format-mypdchat .jsenabled .tllocksubmit {
+    display:none;
+}
+
+.format-mypdchat .pf-notificationsetting {
+    float:right;
+}
+
+.format-mypdchat .tl_gradednote {
+    border: 1px solid #cccccc;
+    padding: 4px;
+    margin: 5px 0px;
+    list-style: none;
+}
+
+.format-mypdchat #tl-posts .section .activity .mod-indent-outer {
+    padding-left: 0px;
+}
+
+.format-mypdchat .tl-post-actionarea {
+    border-top: 1px solid #cccccc;
+    padding: 4px;
+    background: #efefef;
+}
+
+.format-mypdchat #externalurlwrapper {
+    background:#efefef;
+    padding: 5px;
+}
+
+.format-mypdchat.tl-commentform .fitemtitle {
+    display:none;
+}
+
+.format-mypdchat .tl-commentform .mform .fitem .felement.ftextarea {
+    margin-left: 0;
+}
+
+.format-mypdchat .tl-commentform .tl-commenttext {
+    width: 97%;
+}
+
+.format-mypdchat #tl-posts .editing_duplicate {
+    display:none
+}
+
+#tl-addrecentactitity-wrapper {
+    text-align: right;
+
+}
+
+#tl-addrecentactivity-form.mform .fitem .fitemtitle,
+#tl-addrecentactivity-form.mform .fitem div.fgrouplabel label {
+    display:none;
+}
+
+#tl-addrecentactivity-form.mform .fitem div.fitemtitle,
+#tl-addrecentactivity-form.mform .fitem div.fgrouplabel {
+    padding:0;
+}
+
+
+body#page-course-format-mypdchat-pages-addactivity .mform:not(.unresponsive) .femptylabel .fitemtitle  {
+    margin:0px;
+}
+
+#tl-addrecentactivity-form.mform .fitem .felement {
+    margin-left:0px;
+}
+
+#tl-addrecentactivity-form #fgroup_id_filterbytype .fgroup span {
+    min-width:110px;
+    display:inline-block;
+
+}
+
+#tl-addrecentactivity-form  #fgroup_id_filterbytype .fgroup label {
+    margin-right: 5px;
+}
+
+#tl-addrecentactivity-form #fgroup_id_filterbytype .fgroup input[type=checkbox] {
+    margin-right: 0px;
+}
+
+#tl-addrecentactivity-form #selectedactivities li {
+    display : inline;
+    margin-right:20px;
+}
+
+#tl-addrecentactitity-wrapper {
+    text-align: right;
+
+}
+
+.format-mypdchat #filesskin {
+    border: none;
+    border-radius: 10px;
+}
+
+#tl-addrecentactivity-formwrapper {
+    padding: 0 20px;
+    height:100%;
+    overflow-y: scroll;
+}
+
+#page-course-view-mypdchat #id_recentactivitiesheader label,
+#page-course-view-mypdchat #id_recentactivitiesheader .fcheckbox input {
+    float:left;
+}
+
+#page-course-view-mypdchat #filesskin + .moodle-dialogue-base .moodle-dialogue .moodle-dialogue-content .moodle-dialogue-ft {
+    background: #ebebeb linear-gradient(to top, #ffffff, #cccccc);
+    margin :0;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    padding: 10px 0 0 0;
+}

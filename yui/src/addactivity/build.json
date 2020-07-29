@@ -1,0 +1,10 @@
+{
+    "name": "moodle-format_mypdchat-addactivity",
+    "builds": {
+        "moodle-format_mypdchat-addactivity": {
+            "jsfiles": [
+                "addactivity.js"
+            ]
+        }
+    }
+}
